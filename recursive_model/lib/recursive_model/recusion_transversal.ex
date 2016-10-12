@@ -35,12 +35,13 @@ defmodule RecursiveModel.RecursionTransversal do
         descendants([model], [])
       end
 
+      defp descendants([], list) do
+        list
+      end
+
       defp descendants(models, list) do
         children = Enum.flat_map(models, &children/1)
-        case children do
-          [] -> list
-          _ -> descendants(children, children ++ list )
-        end
+        descendants(children, children ++ list)
       end
 
       def depth(model) do
@@ -67,13 +68,14 @@ defmodule RecursiveModel.RecursionTransversal do
         leaves([model], [])
       end
 
+      defp leaves([], list) do
+        list
+      end
+
       defp leaves(models, list) do
         children = Enum.flat_map(models, &children/1)
         leaves = Enum.filter(models, &leaf?/1)
-        case children do
-          [] -> leaves ++ list
-          _ -> leaves(children, leaves ++ list)
-        end
+        leaves(children, leaves ++ list)
       end
 
       def parent(model) do

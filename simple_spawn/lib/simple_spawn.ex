@@ -18,5 +18,6 @@ defmodule SimpleSpawn do
       {pid, number} -> send(pid, number * number)
       _ -> false
     end
+    square
   end
 end
