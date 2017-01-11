@@ -45,7 +45,7 @@ defmodule RecursionExamples do
   end
 
   defp rpn_calculator([], output) do
-    output |> Enum.reverse |> Enum.join(" ")
+    Enum.reverse(output) |> Enum.join(" ")
   end
 
   defp rpn_calculator(["+" | itail], [a | [b | otail]]) do
@@ -65,6 +65,6 @@ defmodule RecursionExamples do
   end
 
   defp rpn_calculator([val | tail], output) do
-    rpn_calculator(tail, [val |> String.to_integer | output])
+    rpn_calculator(tail, [String.to_integer(val) | output])
   end
 end
