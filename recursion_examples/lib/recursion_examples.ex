@@ -1,4 +1,9 @@
 defmodule RecursionExamples do
+  @doc """
+  Convert time description as keyword list to seconds
+  Supports keys of weeks, day, hours, minutes, and seconds
+  """
+
   def time_description_to_seconds(list) do
     time_description_to_seconds(list, 0)
   end
@@ -29,5 +34,37 @@ defmodule RecursionExamples do
 
   defp time_description_to_seconds([{:seconds, seconds} | tail], accumulator) do
     time_description_to_seconds(tail, accumulator + seconds)
+  end
+
+  @doc """
+  Calculates the output based on RPN rules
+  """
+
+  def rpn_calculator(input) do
+    rpn_calculator(String.split(input, " "), [])
+  end
+
+  defp rpn_calculator([], output) do
+    output |> Enum.reverse |> Enum.join(" ")
+  end
+
+  defp rpn_calculator(["+" | itail], [a | [b | otail]]) do
+    rpn_calculator(itail, [b + a | otail])
+  end
+
+  defp rpn_calculator(["-" | itail], [a | [b | otail]]) do
+    rpn_calculator(itail, [b - a | otail])
+  end
+
+  defp rpn_calculator(["*" | itail], [a | [b | otail]]) do
+    rpn_calculator(itail, [b * a | otail])
+  end
+
+  defp rpn_calculator(["/" | itail], [a | [b | otail]]) do
+    rpn_calculator(itail, [b / a | otail])
+  end
+
+  defp rpn_calculator([val | tail], output) do
+    rpn_calculator(tail, [val |> String.to_integer | output])
   end
 end

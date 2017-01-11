@@ -28,4 +28,22 @@ defmodule RecursionExamplesTest do
       assert time_description_to_seconds(weeks: 3, days: 3, hours: 3, minutes: 3, seconds: 3) == 2_084_583
     end
   end
+
+  describe "rpn_calculator" do
+    test "simple addition" do
+      assert rpn_calculator("1 2 +") == "3"
+    end
+
+    test "no operations" do
+      assert rpn_calculator("1 2 3") == "1 2 3"
+    end
+
+    test "mixed operations" do
+      assert rpn_calculator("1 2 3 * +") == "7"
+    end
+
+    test "multiple subtract" do
+      assert rpn_calculator("9 6 3 - -") == "6"
+    end
+  end
 end
