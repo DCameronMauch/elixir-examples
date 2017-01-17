@@ -4,6 +4,7 @@ defmodule RecursionExamples do
   Supports keys of weeks, day, hours, minutes, and seconds
   """
 
+  @spec time_description_to_seconds([{:seconds | :minutes | :hours | :days | :weeks, number}]) :: number
   def time_description_to_seconds(list) do
     time_description_to_seconds(list, 0)
   end
@@ -40,6 +41,7 @@ defmodule RecursionExamples do
   Calculates the output based on RPN rules
   """
 
+  @spec rpn_calculator(String.t) :: String.t
   def rpn_calculator(input) do
     rpn_calculator(String.split(input, " "), [])
   end
