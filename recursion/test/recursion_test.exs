@@ -1,7 +1,21 @@
-defmodule RecursionExamplesTest do
+defmodule RecursionTest do
   use ExUnit.Case
 
-  import RecursionExamples
+  import Recursion
+
+  describe "even?/1" do
+    test "even" do
+      assert even?(1234)
+    end
+
+    test "odd" do
+      refute even?(4321)
+    end
+
+    test "even negative" do
+      assert even?(-1234)
+    end
+  end
 
   describe "time_description_to_seconds" do
     test "weeks" do

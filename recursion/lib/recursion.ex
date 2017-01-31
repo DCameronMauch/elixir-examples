@@ -1,7 +1,24 @@
-defmodule RecursionExamples do
+defmodule Recursion do
+  @moduledoc """
+  Examples of Recursion
+  """
+
+  @doc """
+  Function to determine if an integer is even
+  Uses body style recursion
+  Also uses an example of a guard
+  """
+
+  @spec even?(integer) :: boolean
+  def even?(0), do: true
+  def even?(x) when x > 0, do: !even?(x - 1)
+  def even?(x), do: !even?(x + 1)
+
   @doc """
   Convert time description as keyword list to seconds
   Supports keys of weeks, day, hours, minutes, and seconds
+  Uses tail call style recursion
+  This is a very typical pattern for processing through lists
   """
 
   @spec time_description_to_seconds([{:seconds | :minutes | :hours | :days | :weeks, number}]) :: number
@@ -39,6 +56,7 @@ defmodule RecursionExamples do
 
   @doc """
   Calculates the output based on RPN rules
+  More advanced recursion example using tail call style
   """
 
   @spec rpn_calculator(String.t) :: String.t
