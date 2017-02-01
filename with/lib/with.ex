@@ -43,9 +43,9 @@ defmodule With do
     end
   end
 
-  def epochs(parts), do: epochs(parts, [])
-  def epochs([], accumulator), do: accumulator
-  def epochs([{number, text, _} | tail], accumulator) do
+  defp epochs(parts), do: epochs(parts, [])
+  defp epochs([], accumulator), do: accumulator
+  defp epochs([{number, text, _} | tail], accumulator) do
     result = DateTime.from_iso8601(text)
     case result do
       {:ok, datetime, 0} ->
@@ -55,9 +55,9 @@ defmodule With do
     end
   end
 
-  def values(parts), do: values(parts, [])
-  def values([], accumulator), do: accumulator
-  def values([{number, _, text} | tail], accumulator) do
+  defp values(parts), do: values(parts, [])
+  defp values([], accumulator), do: accumulator
+  defp values([{number, _, text} | tail], accumulator) do
     result = Float.parse(text)
     case result do
       {value, ""} -> values(tail, accumulator ++ [value])
