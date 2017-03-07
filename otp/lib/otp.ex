@@ -5,7 +5,8 @@ defmodule Otp do
     import Supervisor.Spec, warn: false
 
     children = [
-      supervisor(Otp.Job.Supervisor, [])
+      supervisor(Otp.Job.Supervisor, []),
+      worker(Otp.Agent, [])
     ]
 
     opts = [strategy: :one_for_one, name: Otp.Supervisor]
